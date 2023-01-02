@@ -1,0 +1,38 @@
+.size{
+    width: 20%;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;;
+}
+.footer-icon { color: inherit; } 
+.header-btn{
+    display: block;
+    border: 1px solid #56CCF2;
+    padding: 15px 30px;
+    font-size: 23px;
+    font-weight: 200;
+    margin: 10px auto;
+    background: inherit;
+    cursor: pointer;
+    color: white;
+}
+.header-btn-ply{
+    cursor: pointer;
+    display: block;
+    border: 2px solid #56CCF2;
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 200;
+    margin: 20px auto;
+    background: inherit;
+    color: #56CCF2;
+}
+
+.pushDiv{
+    border: 2px solid #f2ac56;
+    height: 40px;
+    margin-bottom: 20px;
+    width: 300px;
+    background-color: lightskyblue;
+}
