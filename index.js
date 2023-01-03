@@ -1,5 +1,6 @@
 const cart = [];
 const sideBar =[];
+const baseUrl = "http://localhost:3000/api/shop/"
 let msg;
 let total=0;
 const totalDiv =document.querySelector("h4");
@@ -13,11 +14,10 @@ cartBtn.addEventListener("click",showCart)
 const mainProductDiv = document.querySelector(".row, .align-items-start");
 loadProducts();
 async function loadProducts() {
-    const products = await axios.get("http://localhost:3000/api/shop/products");
-    console.log(products);
+    const products = await axios.get(baseUrl+"products");
     for (const product of products.data) {
-        const ProductDiv =  mainProductDiv.cloneNode(true);
-        const card = ProductDiv.firstElementChild.firstElementChild;
+        const topCard = document.querySelector("#proto").cloneNode(true);
+        const card = topCard.firstElementChild;
         const imgProduct = card.firstElementChild;
         const titleProduct = imgProduct.nextElementSibling.firstElementChild;
         const desProduct = titleProduct.nextElementSibling;
@@ -28,7 +28,8 @@ async function loadProducts() {
         priceProduct.innerText = `$${product.price}`;
         desProduct.innerText = product.description;
         card.setAttribute("id",product.id);
-        mainProductDiv.appendChild(card.parentElement);
+        console.log(card.parentElement);
+        mainProductDiv.appendChild(topCard);
     }
 }
 
@@ -40,7 +41,9 @@ function addToCart(e) {
             total+=price;
             cart.push(e.target.parentElement.parentElement);
             msg="Product added to the cart";
+            const id = (e.target.parentElement.parentElement.id);
             totalDiv.innerText = 'total '+total;
+            axios.post(baseUrl+"cart",{id});
         }else{
             msg="Product is already in cart"
         }
@@ -57,18 +60,16 @@ function addToCart(e) {
         }, 3000);
         cartBtn.innerHTML = `Cart <sup>${cart.length}</sup>`;
 
-    }else if(e.target.className==="card-img-top"){
-        
-        
-        const ele = e.target.parentElement.cloneNode(true);
-        ele.className = "d-flex flex-row m-2";
-        sideDiv.appendChild(ele);
-        
     }
 }
 
 function showCart(e) {
     sideDiv.style.display="inline-block";
+    loadCart();
+}
+async function loadCart() {
+    const products = await axios.get(baseUrl+"/cart")
+    console.log(products.data);
 }
 function close(e) {
     sideDiv.innerContent= sideDiv.firstElementChild;
