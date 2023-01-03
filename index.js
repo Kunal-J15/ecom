@@ -12,7 +12,10 @@ sideClosebtn.addEventListener("click",close);
 const cartBtn= document.getElementsByClassName("btn btn-outline-success position-absolute top-0 end-0")[0];
 cartBtn.addEventListener("click",showCart)
 const mainProductDiv = document.querySelector(".row, .align-items-start");
+
 loadProducts();
+
+
 async function loadProducts() {
     const products = await axios.get(baseUrl+"products");
     for (const product of products.data) {
@@ -28,22 +31,43 @@ async function loadProducts() {
         priceProduct.innerText = `$${product.price}`;
         desProduct.innerText = product.description;
         card.setAttribute("id",product.id);
-        console.log(card.parentElement);
         mainProductDiv.appendChild(topCard);
     }
+    loadCart();
+}
+
+async function loadCart() {
+    const products = await axios.get(baseUrl+"/cart")
+    const pushDiv =document.querySelector("#cart-products")
+    pushDiv.innerHTML="";
+    total=0;
+    for (const product of products.data) {
+        total+=product.price * product.cartItem.quantity;
+        const card = document.getElementById(product.id).cloneNode(true);
+        card.style = ""
+        const imgCart = card.firstElementChild;
+        const titleCart = imgCart.nextElementSibling.firstElementChild;
+        const desCart = titleCart.nextElementSibling;
+        desCart.innerText = "Quantity "+ product.cartItem.quantity;
+        const priceCart = imgCart.nextElementSibling.nextElementSibling.firstElementChild;
+        const btn = imgCart.nextElementSibling.nextElementSibling.nextElementSibling.remove();
+        console.log(product);
+        imgCart.className += " side-img"
+        card.className += " d-flex flex-row"
+        pushDiv.appendChild(card)
+
+    }
+    cartBtn.innerHTML = `Cart <sup>${products.data.length}</sup>`;
+    totalDiv.innerText = 'total '+total;
 }
 
 function addToCart(e) {
     if(e.target.id==="cart"){
-        if(!cart.includes(e.target.parentElement.parentElement)){
-            let price = parseFloat(e.target.parentElement.previousElementSibling.innerText.split("$")[1]);
-            console.log(price);
-            total+=price;
-            cart.push(e.target.parentElement.parentElement);
+        if(!cart.includes(e.target.parentElement.parentElement) || true){//increases quantity
             msg="Product added to the cart";
             const id = (e.target.parentElement.parentElement.id);
-            totalDiv.innerText = 'total '+total;
-            axios.post(baseUrl+"cart",{id});
+            
+            axios.post(baseUrl+"cart",{id}).then(()=>loadCart());
         }else{
             msg="Product is already in cart"
         }
@@ -58,7 +82,7 @@ function addToCart(e) {
         setTimeout(() => {
             div.remove();
         }, 3000);
-        cartBtn.innerHTML = `Cart <sup>${cart.length}</sup>`;
+        
 
     }
 }
@@ -67,10 +91,7 @@ function showCart(e) {
     sideDiv.style.display="inline-block";
     loadCart();
 }
-async function loadCart() {
-    const products = await axios.get(baseUrl+"/cart")
-    console.log(products.data);
-}
+
 function close(e) {
     sideDiv.innerContent= sideDiv.firstElementChild;
     sideDiv.style.display="none";

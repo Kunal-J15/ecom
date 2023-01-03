@@ -33,20 +33,19 @@
             </ul>
           </div>
         </div>
-        <div class="sideBar position-absolute end-0" id="sideBar" style="display: none;">
-          <div class="m-1">
-          <button onclick = "close(event)" class="btn btn-outline-danger">&times;</button>
-          <div >
-              <!-- <button class="mt-1  btn btn-secondary">go to cart</button> -->
-              <button class="mt-1  btn btn-secondary">Checkout</button>
-              <h4>total </h4>
-  
-  
-          </div>
-      </div>
-      </div>
-      </nav>
 
+      </nav>
+      <div class="sideBar" id="sideBar" style="display: none;">
+        <div class="m-1">
+        <button onclick = "close(event)" class="btn btn-outline-danger">&times;</button>
+        <div >
+            <!-- <button class="mt-1  btn btn-secondary">go to cart</button> -->
+            <button class="mt-1  btn btn-secondary">Checkout</button>
+            <h4>total 0</h4>
+            <div id="cart-products">Cart is empty</div>
+        </div>
+    </div>
+    </div>
     
       <div class=" text-center bg-secondary p-5 mt-2"><h1 class="text-light display-1">
         The Generics
@@ -60,46 +59,7 @@
 </div>
     </div>
 
-    <div class="container mt-5 " onclick="addToCart(event)">
-        <div class="text-center"><h1>Merch</h1></div>
-        
-        <div class="row align-items-start">
-            <div class="col-sm-6 mt-5 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://prasadyash2411.github.io/ecom-website/img/Shirt.png" class="card-img-top" alt="img">
-                    <div class="card-body">
-                        <h5 class="card-title">T-Shirt</h5>
-                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">$8.99</li>
-                    </ul>
-                    <div class="card-body">
-                        <a   class="btn btn-primary" id="cart">Add To Cart</a>
-                    </div>
-                </div>
-            </div>
-       
 
-
-        <div class="col-sm-6 mt-5 d-flex justify-content-center">
-          <div class="card" style="width: 18rem;">
-            <img src="https://prasadyash2411.github.io/ecom-website/img/Cofee.png" class="card-img-top" alt="img">
-            <div class="card-body">
-                <h5 class="card-title">Coffee Cup</h5>
-              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">$2.99</li>
-            </ul>
-            <div class="card-body">
-                <a class="btn btn-primary" id="cart">Add To Cart</a>
-            </div>
-          </div>
-        </div>
-    
-       </div>
-    </div>
     <div class="fixed-bottom"></div>
     <footer class="">
         <div class=" text-center bg-info mt-2"><h1 class="d-flex ms-3">
@@ -179,4 +139,44 @@
         <a   class="btn btn-primary" id="cart" >Add To Cart</a>
     </div>
   </div>
-</div> -->
+</div> 
+    <div class="container mt-5 " onclick="addToCart(event)">
+        <div class="text-center"><h1>Merch</h1></div>
+        
+        <div class="row align-items-start">
+            <div class="col-sm-6 mt-5 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://prasadyash2411.github.io/ecom-website/img/Shirt.png" class="card-img-top" alt="img">
+                    <div class="card-body">
+                        <h5 class="card-title">T-Shirt</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">$8.99</li>
+                    </ul>
+                    <div class="card-body">
+                        <a   class="btn btn-primary" id="cart">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+       
+
+
+        <div class="col-sm-6 mt-5 d-flex justify-content-center">
+          <div class="card" style="width: 18rem;">
+            <img src="https://prasadyash2411.github.io/ecom-website/img/Cofee.png" class="card-img-top" alt="img">
+            <div class="card-body">
+                <h5 class="card-title">Coffee Cup</h5>
+             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">$2.99</li>
+            </ul>
+            <div class="card-body">
+                <a class="btn btn-primary" id="cart">Add To Cart</a>
+            </div>
+          </div>
+        </div>
+    
+       </div>
+    </div>  -->
