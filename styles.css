@@ -38,15 +38,16 @@
     background-color: lightskyblue;
 }
 .sideBar{
+    margin-top: 200px;
     display:inline-block;
     border: 2px solid black;
     height:auto;
     background-color: white;
     z-index: 1;
-    width: 50%;
+    width: 40%;
 }
 
 .side-img{
-    width: 50%;
+    width: 30%;
     border-radius: 50%;
 }
